@@ -1,0 +1,4 @@
+name: ChatDesigner
+version: 1.0
+main: jp.chatdesigner.ChatDesigner
+api-version: 1.16
