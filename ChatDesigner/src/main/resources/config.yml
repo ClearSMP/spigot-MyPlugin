@@ -1,8 +1,0 @@
-# チャットに表示する接頭辞
-prefix: "&a[Replit] &f"
-
-# 表示するメッセージ
-message: "5分ごとに表示されるお知らせです！"
-
-# 表示間隔（分）
-interval-minutes: 5

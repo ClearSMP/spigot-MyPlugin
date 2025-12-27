@@ -1,0 +1,42 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'jp.clearlogins'
+version = '1.0'
+
+java {
+    // Java Toolchain は削除して、環境の JDK を使う
+    // Minecraft サーバーは Java 8~17 対応なので問題なし
+}
+
+repositories {
+    mavenCentral()
+    // SNAPSHOT を使う場合はリポジトリを追加
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots/' }
+}
+
+dependencies {
+    // BungeeCord API を手動 Jar で使う場合
+    compileOnly files('libs/BungeeCord-1.20-SNAPSHOT.jar')
+
+    // もし Maven ローカルにインストールしている場合はこちらも可
+    // compileOnly 'net.md-5:bungeecord-api:1.20-SNAPSHOT'
+}
+
+// Jar タスク設定
+tasks.jar {
+    archiveBaseName.set('ClearLoginSecurity')
+    archiveVersion.set('1.0')
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    // 必要に応じて依存関係を Jar に含める（BungeeCord API は含めない）
+    // from {
+    //     configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    // }
+}
+
+// コンパイルオプション（追加で必要なら）
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
